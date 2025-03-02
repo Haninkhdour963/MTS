@@ -11,13 +11,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// Register Identity services
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI()
-    .AddDefaultTokenProviders();  // Ensure token providers for things like password reset are also added
+    .AddDefaultTokenProviders();
 
-// Add controllers and views
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -50,7 +48,7 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseAuthentication();  // Ensure authentication middleware is added
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
